@@ -50,4 +50,7 @@
 ;(unpin! t)
 (package! blacken)
 (package! flycheck-mypy)
-(package! dts-mode)
+(package! py-isort)
+(package! toml)
+(package! protobuf-mode)
+

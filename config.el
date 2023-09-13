@@ -76,7 +76,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; (setq dap-auto-configure-mode t)
 
 ;; Change other window binding to cycle through tabs
 (global-set-key (kbd "C-<tab>") 'other-window)
@@ -84,25 +83,13 @@
 ;; Kill
 
 (global-set-key (kbd "C-<backspace>") 'backward-kill-sexp)
+(add-hook 'python-mode-hook 'blacken-mode)
 
 ;; number of characters until the fill column
 (setq fill-column 80)
 
 (add-hook! python-mode 'blacken-mode)
 (add-hook! before-save 'py-isort-before-save)
+; Change other window binding to cycle through tabs
+(global-set-key (kbd "C-<tab>") 'other-window)
 
-;; switch to the interpreter after executing code
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-
-
-;; smartparens
-;; https://github.com/Fuco1/.emacs.d/blob/master/files/smartparens.el
-;; see tutorial: https://gist.github.com/jsmestad/1059d15e8debf5f2e7e81c92052c67d2
-;; (add-hook 'eval-expression-minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
-
-;;++
-;; (define-key smartparens-mode-map (kbd "M-<delete>") 'sp-unwrap-sexp)
-;; (define-key smartparens-mode-map (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)
-
-(setq browse-url-generic-program "/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe")
