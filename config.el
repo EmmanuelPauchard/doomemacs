@@ -89,7 +89,24 @@
 (setq fill-column 80)
 
 (add-hook! python-mode 'blacken-mode)
+(add-hook! python-mode 'lsp-headerline-breadcrumb-mode)
 (add-hook! before-save 'py-isort-before-save)
 ; Change other window binding to cycle through tabs
 (global-set-key (kbd "C-<tab>") 'other-window)
 
+                                        ; emacs forge (gitlab)
+(setq auth-sources '("~/.authinfo"))
+(use-package forge
+  :after magit)
+
+;; org
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+;; plantuml
+(setq org-plantuml-jar-path (expand-file-name "/home/manu/.local/lib/plantuml-mit-1.2023.13.jar"))
+(setq plantuml-default-exec-mode 'jar)
+
+(global-set-key (kbd "M-S-<up>") 'duplicate-thing)
+(global-set-key (kbd "M-S-<down>") 'duplicate-thing)
