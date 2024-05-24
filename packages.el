@@ -58,3 +58,5 @@
 (package! all-the-icons)
 (package! sqlite3)
 (package! duplicate-thing)
+(package! dockerfile-mode)
+(package! docker-compose-mode)
