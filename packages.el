@@ -53,8 +53,4 @@
 (package! py-isort)
 (package! toml)
 (package! protobuf-mode)
-(package! projectile)
-(package! forge)
-(package! all-the-icons)
-(package! sqlite3)
 (package! duplicate-thing)
