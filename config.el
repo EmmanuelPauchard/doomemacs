@@ -103,3 +103,19 @@
 
 (global-set-key (kbd "M-S-<up>") 'duplicate-thing)
 (global-set-key (kbd "M-S-<down>") 'duplicate-thing)
+;; https://github.com/shuxiao9058/tabnine
+(use-package! tabnine
+  :hook ((prog-mode . tabnine-mode)
+	 (kill-emacs . tabnine-kill-process))
+  :config
+  (add-to-list 'completion-at-point-functions #'tabnine-completion-at-point)
+  (tabnine-start-process)
+  :bind
+  (:map  tabnine-completion-map
+	("<tab>" . tabnine-accept-completion)
+	("TAB" . tabnine-accept-completion)
+	;; ("C-M-f" . tabnine-accept-completion-by-word) ;
+	("M-<return>" . tabnine-accept-completion-by-line)
+	("C-g" . tabnine-clear-overlay)
+	("M-[" . tabnine-previous-completion)
+	("M-]" . tabnine-next-completion)))

@@ -54,3 +54,4 @@
 (package! toml)
 (package! protobuf-mode)
 (package! duplicate-thing)
+(package! tabnine)
