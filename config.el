@@ -103,6 +103,11 @@
 
 (global-set-key (kbd "M-S-<up>") 'duplicate-thing)
 (global-set-key (kbd "M-S-<down>") 'duplicate-thing)
+
+(when (executable-find "ipython3")
+  (setq python-shell-interpreter "ipython3"
+        python-shell-interpreter-args "--simple-prompt"))
+
 ;; https://github.com/shuxiao9058/tabnine
 (use-package! tabnine
   :hook ((prog-mode . tabnine-mode)
@@ -119,3 +124,29 @@
 	("C-g" . tabnine-clear-overlay)
 	("M-[" . tabnine-previous-completion)
 	("M-]" . tabnine-next-completion)))
+
+(require 'pyenv-mode)
+
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name."
+  (let ((project (projectile-project-name)))
+    (if (member project (pyenv-mode-versions))
+        (pyenv-mode-set project)
+      (pyenv-mode-unset))))
+
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
+(setq! python-pytest-executable "pyenv exec pytest -vv")
+
+(setq! python-shell-interpreter "ipython3")
+(setq! python-shell-interpreter-args "--simple-prompt")
+
+(global-set-key (kbd "<f5>") 'python-pytest-function)
+(map! :after python
+      :map python-mode-map
+      :prefix "C-x C-p"
+      "t" #'python-pytest-function
+      "f" #'python-pytest-file
+      "r" #'python-pytest-repeat)
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
