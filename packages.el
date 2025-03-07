@@ -54,4 +54,6 @@
 (package! toml)
 (package! protobuf-mode)
 (package! duplicate-thing)
+(package! dts-mode)
+(package! typescript-mode)
 (package! tabnine)
